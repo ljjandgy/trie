@@ -16,7 +16,7 @@ public class Main {
         //构建字典树
         wordList.forEach(word->TrieUtils.addTrieNode(word,root));
         Scanner scanner = new Scanner(System.in);
-        System.out.println("请输入需要查询的单词：");
+        System.out.println("请输入想要搜素的内容：");
         String prefix = scanner.nextLine();
         //获取前缀匹配的单词数
         System.out.println("在词典中搜索到"+TrieUtils.countPrefix(prefix,root)+"个匹配单词");

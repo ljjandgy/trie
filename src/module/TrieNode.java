@@ -16,11 +16,14 @@ public class TrieNode {
     private int num;
     /** 包含的所有子节点 **/
     private Map<Character, TrieNode> nodeMap;
+    /** 是否是单词的最后一个节点 **/
+    private Boolean isEnd;
 
     public TrieNode(char wordChar, int num, Map<Character, TrieNode> nodeMap) {
         this.wordChar = wordChar;
         this.num = num;
         this.nodeMap = nodeMap;
+        this.isEnd = false;
     }
 
     /**
@@ -52,5 +55,13 @@ public class TrieNode {
 
     public void setNodeMap(Map<Character, TrieNode> nodeMap) {
         this.nodeMap = nodeMap;
+    }
+
+    public Boolean getIsEnd() {
+        return isEnd;
+    }
+
+    public void setIsEnd(Boolean end) {
+        this.isEnd = end;
     }
 }

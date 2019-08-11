@@ -29,16 +29,18 @@ public class TrieUtils {
         for(int i=0;i<word.length();i++){
             TrieNode child=cur.getNodeMap().get(word.charAt(i));
             if(child==null){
-                TrieNode node=new TrieNode(word.charAt(i),1,new HashMap<Character, TrieNode>());
+                TrieNode node=new TrieNode(word.charAt(i),1,new HashMap<>());
                 cur.getNodeMap().put(word.charAt(i),node);
-                cur=cur.getNodeMap().get(word.charAt(i));
+                cur=node;
             }else{
                 cur=child;
                 cur.increaseNum();
             }
+            //记录这个地方节点是一个完整的单词
+            if (i==word.length()-1){
+                cur.setIsEnd(Boolean.TRUE);
+            }
         }
-        //增加数量
-        cur.increaseNum();
     }
 
     /**
@@ -80,6 +82,10 @@ public class TrieUtils {
                 curNode = child;
             }
         }
+        //如果前缀为一个完整单词，就添加进去
+        if (curNode.getIsEnd()){
+            wordList.add(prefix);
+        }
         getWords(wordList,curNode.getNodeMap(),prefix);
         return wordList;
     }
@@ -95,6 +101,10 @@ public class TrieUtils {
         nodeMap.forEach((wordChar,node)->{
             //还有子节点时
             if (node.getNodeMap()!=null&&node.getNodeMap().size()>0){
+                //存在完整单词时
+                if (node.getIsEnd()&&wordList.size()<10){
+                    wordList.add(prefix+wordChar);
+                }
                 getWords(wordList,node.getNodeMap(),prefix+wordChar);
             }else{
                 //没有子节点时,就是一个完整单词了
