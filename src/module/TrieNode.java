@@ -1,7 +1,6 @@
 package module;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName module.TrieNode
@@ -11,24 +10,32 @@ import java.util.List;
  * @Date 2019-08-10 22:48:53
  */
 public class TrieNode {
-    /** 有多少单词通过这个节点,即由根至该节点组成的字符串模式出现的次数 **/
+    /** 单词包含的单字符 **/
+    private char wordChar;
+    /** 单词出现的次数 **/
     private int num;
-    /** 所有的儿子节点 **/
-    private List<TrieNode> son;
-    /** 是不是最后一个节点 **/
-    private boolean isEnd;
-    /** 节点的内容 **/
-    private char val;
+    /** 包含的所有子节点 **/
+    private Map<Character, TrieNode> nodeMap;
 
-    public TrieNode()
-    {
-        num = 1;
-        son = new ArrayList<>();
-        isEnd = false;
+    public TrieNode(char wordChar, int num, Map<Character, TrieNode> nodeMap) {
+        this.wordChar = wordChar;
+        this.num = num;
+        this.nodeMap = nodeMap;
     }
 
-    public void increaseNum(int increment){
-        this.num = num+increment;
+    /**
+     * 增加num
+     */
+    public void increaseNum(){
+        this.num++;
+    }
+
+    public char getWordChar() {
+        return wordChar;
+    }
+
+    public void setWordChar(char wordChar) {
+        this.wordChar = wordChar;
     }
 
     public int getNum() {
@@ -39,27 +46,11 @@ public class TrieNode {
         this.num = num;
     }
 
-    public List<TrieNode> getSon() {
-        return son;
+    public Map<Character, TrieNode> getNodeMap() {
+        return nodeMap;
     }
 
-    public void setSon(List<TrieNode> son) {
-        this.son = son;
-    }
-
-    public boolean isEnd() {
-        return isEnd;
-    }
-
-    public void setEnd(boolean end) {
-        isEnd = end;
-    }
-
-    public char getVal() {
-        return val;
-    }
-
-    public void setVal(char val) {
-        this.val = val;
+    public void setNodeMap(Map<Character, TrieNode> nodeMap) {
+        this.nodeMap = nodeMap;
     }
 }
