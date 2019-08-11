@@ -29,7 +29,7 @@ public class TrieUtils {
         for(int i=0;i<word.length();i++){
             TrieNode child=cur.getNodeMap().get(word.charAt(i));
             if(child==null){
-                TrieNode node=new TrieNode(word.charAt(i),0,new HashMap<Character, TrieNode>());
+                TrieNode node=new TrieNode(word.charAt(i),1,new HashMap<Character, TrieNode>());
                 cur.getNodeMap().put(word.charAt(i),node);
                 cur=cur.getNodeMap().get(word.charAt(i));
             }else{
