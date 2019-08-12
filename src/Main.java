@@ -12,7 +12,7 @@ public class Main {
         //读取文件
         List<String> wordList = FileUtils.readFile("D://dictionary.txt");
         //初始化字典树
-        TrieNode root = new TrieNode('\u0000', 0, new HashMap<Character, TrieNode>());
+        TrieNode root = new TrieNode('\u0000', 0, new HashMap<>());
         //构建字典树
         wordList.forEach(word->TrieUtils.addTrieNode(word,root));
         Scanner scanner = new Scanner(System.in);
@@ -22,6 +22,6 @@ public class Main {
         System.out.println("在词典中搜索到"+TrieUtils.countPrefix(prefix,root)+"个匹配单词");
         //获取前缀匹配的单词
         System.out.println("匹配单词如下所示：");
-        TrieUtils.findMatchWords(prefix,root).forEach(System.out::println);
+        TrieUtils.printLimitWord(TrieUtils.findMatchWords(prefix,root),10);
     }
 }

@@ -91,6 +91,16 @@ public class TrieUtils {
     }
 
     /**
+     * 打印特定长度的单词
+     * @param wordList 单词集合
+     * @param limit 限制
+     */
+    public static void printLimitWord(List<String> wordList,int limit){
+        wordList = wordList.size()>limit?wordList.subList(0,limit):wordList;
+        wordList.forEach(System.out::println);
+    }
+
+    /**
      * 获取所有匹配的单词
      * @param wordList 单词集合
      * @param nodeMap 节点所包含的所有子节点
@@ -102,15 +112,13 @@ public class TrieUtils {
             //还有子节点时
             if (node.getNodeMap()!=null&&node.getNodeMap().size()>0){
                 //存在完整单词时
-                if (node.getIsEnd()&&wordList.size()<10){
+                if (node.getIsEnd()){
                     wordList.add(prefix+wordChar);
                 }
                 getWords(wordList,node.getNodeMap(),prefix+wordChar);
             }else{
                 //没有子节点时,就是一个完整单词了
-                if (wordList.size()<10){
-                    wordList.add(prefix+wordChar);
-                }
+                wordList.add(prefix+wordChar);
             }
         });
     }
