@@ -32,10 +32,7 @@ public class TrieTest {
     @Test
     public void commonWordTest(){
         for (int i=0;i<TEST_NUM;i++){
-            String prefix = getPrefix(RANDOM.nextInt(5));
-            if ("".equals(prefix)){
-                continue;
-            }
+            String prefix = getPrefix(RANDOM.nextInt(4)+1);
             System.out.println(prefix);
             Assert.assertEquals(TrieUtils.countPrefix(prefix,root),TrieUtils.findMatchWords(prefix,root).size());
         }
